@@ -5,10 +5,10 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipe
 import emoji
 import re
 
-# preparing the API Key
+# API Key for accessing YouTube data API
 API_Key = "your-API-key"
 
-# preparing our Youtube client
+# Create Youtube API client
 youtube = build("youtube","v3",developerKey=API_Key)
 
 # List of the keywords we want to filter
@@ -17,7 +17,7 @@ keywords = ["which","wallpaper","wallpapers","confused",
               "viewers","content", "shirt", "MKBHD", "mustache",
                 "he", "guy","or","choice","watching"]
 
-# dkdkdkdkdkdkd
+# Function: fetch comments from YouTube
 def getComments(video_id,max_comments = 500):
     comments = []
     next_page = None
@@ -40,21 +40,21 @@ def getComments(video_id,max_comments = 500):
             break
     return comments
 
-# dldldldldld
+# Function: filter comments using keywords
 def filterComments(comments,keywords):
     filteredComments = [c for c in comments if not any(k.lower() in c.lower() for k in keywords)]
     return filteredComments
 
 
 # Emoji Sentiment System
-positive_emojis = set(["😂", "🤣", "😍", "❤️", "🔥", "😁", "😊", "😃", "👍", "🙂"])
-negative_emojis = set(["😡", "🤬", "😢", "😭", "👎", "😠", "🙁", "😞"])
-def emoji_sentiment_score(text):
+positive_emojis = set(["😂", "🤣", "😍", "❤️", "🔥", "😁", "😊", "😃", "👍", "🙂"])     # positive emoji set
+negative_emojis = set(["😡", "🤬", "😢", "😭", "👎", "😠", "🙁", "😞"])                 # negative empji set
+def emoji_sentiment_score(text): 
     pos = sum(ch in positive_emojis for ch in text)
     neg = sum(ch in negative_emojis for ch in text)
 
     if pos == 0 and neg == 0:
-        return None  # no emoji sentiment
+        return None                                                                        # no emoji sentiment
 
     if pos > neg:
         return "POSITIVE"
@@ -97,11 +97,12 @@ def is_gibberish(text):
 
     return False
 
-# Load Better Sentiment Model
+# Load Better Sentiment Model using NLP
 
 model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSequenceClassification.from_pretrained(model_name)
+# Standard sentiment pipline
 sentiment_model = pipeline(
     "sentiment-analysis",
     model="distilbert-base-uncased-finetuned-sst-2-english"
@@ -109,7 +110,6 @@ sentiment_model = pipeline(
 
 
 # Hybrid Sentiment Analyzer
-
 def analyze_comment(text):
     # Check emoji-only or strong emoji sentiment
     emoji_label = emoji_sentiment_score(text)
@@ -136,11 +136,9 @@ def analyze_comment(text):
     if is_gibberish(text):
         return "NEUTRAL"
 
-
+# analyze list of comments
 def analyze_comments(comments):
     return [analyze_comment(c) for c in comments]
-
-
 
 def analyze_comments(comments):
     """Analyze sentiment of a list of comments."""
@@ -153,20 +151,22 @@ def analyze_comments(comments):
 # --- Example usage ---
 video_id = "rng_yUSwrgU"
 
-# 1. Fetch comments
+# Fetch comments
 all_comments = getComments(video_id)
 
-# 2. Filter comments using keywords
+# Filter comments using keywords
 filtered_comments = filterComments(all_comments, keywords)
 
-# 3. Analyze sentiment only on filtered comments
+# Analyze sentiment only on filtered comments
 sentiments = analyze_comments(filtered_comments)
 
-# 4. Save results
+# Save results
 df = pd.DataFrame({
     "comment": filtered_comments,
     "sentiment": sentiments
 })
 df.to_csv("youtube_comments_sentiment.csv", index=False)
 print(df.head(100))
+
+# Display all 100 comments 
 pd.set_option('display.max_rows', 100)
