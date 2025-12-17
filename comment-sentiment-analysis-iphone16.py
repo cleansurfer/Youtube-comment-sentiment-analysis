@@ -129,8 +129,6 @@ def analyze_comment(text):
         return "POSITIVE"
     elif label.lower() in ["negative"]:
         return "NEGATIVE"
-    else:
-        return "NEUTRAL"
 
     # detect nonsense text first
     if is_gibberish(text):
@@ -170,3 +168,4 @@ print(df.head(100))
 
 # Display all 100 comments 
 pd.set_option('display.max_rows', 100)
+
