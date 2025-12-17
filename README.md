@@ -184,3 +184,4 @@ python main.py
 - GUI or web dashboard version
 - Database integration (MongoDB / SQLite)
 
+
