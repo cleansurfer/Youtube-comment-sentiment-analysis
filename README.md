@@ -52,24 +52,23 @@ The final output is exported as a .csv file for further data analysis, visualiza
 
 
 ---> Dependencies:
-Required Python Version:
-Python 3.8+
+- Required Python Version: Python 3.8+
 
 
 
 ---> Required Libraries:
-google-api-python-client
-pandas
-transformers
-emoji
-torch
-re
+- google-api-python-client
+- pandas
+- transformers
+- emoji
+- torch
+- re
 
 
 
 ---> Install all dependencies using:
 
-pip install google-api-python-client pandas transformers emoji torch
+- pip install google-api-python-client pandas transformers emoji torch
 
 
 ---> Setup Instructions:
