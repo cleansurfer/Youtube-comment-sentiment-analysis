@@ -1,7 +1,7 @@
                                            # YouTube Comments Sentiment Analyzer #
 
 
----> Overview:
+## overview
 
 This project provides a fully automated pipeline for collecting, filtering, and analyzing the sentiment of YouTube video comments. It uses the YouTube Data API to retrieve comments, filters out irrelevant entries based on predefined keywords, and applies a hybrid sentiment analysis system that combines:
   - Emoji-based sentiment detection
@@ -12,7 +12,7 @@ The final output is exported as a .csv file for further data analysis, visualiza
 
 
 
----> Key Features:
+## Key Features
    1. Retrieve up to 500 YouTube Comments:
       - Uses pagination automatically with the YouTube Data API.
    2. Keyword-Based Comment Filtering:
@@ -50,12 +50,12 @@ The final output is exported as a .csv file for further data analysis, visualiza
 
 
 
----> Dependencies:
+## Dependencies
 - Required Python Version: Python 3.8+
 
 
 
----> Required Libraries:
+## Required Libraries:
 - google-api-python-client
 - pandas
 - transformers
@@ -65,12 +65,12 @@ The final output is exported as a .csv file for further data analysis, visualiza
 
 
 
----> Install all dependencies using:
+## Install all dependencies using:
 
 - pip install google-api-python-client pandas transformers emoji torch
 
 
----> Setup Instructions:
+## Setup Instructions:
 1. Obtain a YouTube Data API Key
 
 Create an API key from
@@ -94,6 +94,7 @@ python main.py
 
 
 # System Architecture
+
                 ┌───────────────────────────┐
                 │  YouTube Data API (v3)    │
                 └───────────────┬───────────┘
@@ -125,7 +126,7 @@ python main.py
 
 
 
----> Output Format:
+## Output Format
  - The generated CSV contains two columns:
      Column	    Description
      comment    Cleaned filtered YouTube comment
@@ -135,7 +136,7 @@ python main.py
 
 
 
----> Algorithm Architecture:
+## Algorithm Architecture:
 1. Comment Extraction
   - Uses pagination with nextPageToken
   - Retrieves plaintext comments only
@@ -154,7 +155,7 @@ python main.py
 
 
 
----> Project Goals:
+## Project Goals
  1. Improve the accuracy of sentiment analysis for social media content
  2. Handle informal text, emojis, slang, and noisy characters
  3. Provide a clean dataset suitable for further research or ML modeling
@@ -162,7 +163,7 @@ python main.py
 
 
 
----> Customization:
+## Customization
   - You can easily modify:
      Keyword Filters
   - Add or remove keywords in the keywords list.
@@ -174,7 +175,7 @@ python main.py
 
 
 
----> Future Improvements:
+## Future Improvements:
 - If desired, the system can be expanded to include:
 - Graphical sentiment analysis (matplotlib visualizations)
 - YouTube replies analysis (nested comments)
@@ -213,4 +214,5 @@ The project uses the **YouTube Data API v3** to retrieve video comments via Goog
 - **pandas**: Data processing and CSV export  
 - **emoji**: Emoji detection and normalization  
 - **re**: Text cleaning and gibberish detection
+
 
