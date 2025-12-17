@@ -215,4 +215,40 @@ The project uses the **YouTube Data API v3** to retrieve video comments via Goog
 - **emoji**: Emoji detection and normalization  
 - **re**: Text cleaning and gibberish detection
 
+## Additional Information
+
+### Limitations & Known Issues
+- The sentiment model is optimized for English comments only.
+- Emoji-based sentiment is rule-based and may not capture sarcasm or complex context.
+- Neutral sentiment is intentionally minimized to focus on clear positive/negative polarity.
+- YouTube API quota limits may restrict large-scale data collection.
+
+### Ethical Considerations
+- Only publicly available YouTube comments are analyzed.
+- No personal user data is stored or redistributed.
+- Predictions may contain model bias; they should not be used for moderation or decision-making without human review.
+
+### Reproducibility
+- Use the same model versions listed in `requirements.txt`.
+- Run the notebook or script with the same video ID.
+- Ensure stable internet connection for API calls and model downloads.
+
+### Project Scope
+**In Scope:**
+- English-language YouTube comments
+- Top-level comments only
+- Binary sentiment classification (POSITIVE / NEGATIVE)
+
+**Out of Scope:**
+- Sarcasm or nuanced sentiment detection
+- Multilingual support
+- Automated comment moderation or spam removal
+
+### Changelog
+**v1.0.0**
+- Initial release with hybrid sentiment analysis system
+- CSV export support
+- Jupyter Notebook demo included
+
+
 
