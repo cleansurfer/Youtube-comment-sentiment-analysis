@@ -94,6 +94,38 @@ python main.py
 # The script fetches comments, filters them, performs sentiment analysis, and saves the output CSV file.
 
 
+# System Architecture
+                ┌───────────────────────────┐
+                │  YouTube Data API (v3)    │
+                └───────────────┬───────────┘
+                                │
+                                ▼
+                   ┌──────────────────────┐
+                   │  Comment Collector   │
+                   └────────────┬─────────┘
+                                │
+                                ▼
+                   ┌──────────────────────┐
+                   │  Keyword Filter      │
+                   └────────────┬─────────┘
+                                │
+                                ▼
+       ┌───────────────────────────────────────────────────┐
+       │               Hybrid Sentiment Engine             │
+       │                                                   │
+       │  ┌──────────────┐  ┌────────────────┐  ┌────────┐│
+       │  │ Emoji Module  │→│ Gibberish Check │→│ NLP ML  ││
+       │  └──────────────┘  └────────────────┘  └────────┘│
+       └───────────────────────────────────────────────────┘
+                                │
+                                ▼
+                   ┌──────────────────────┐
+                   │     CSV Export       │
+                   └──────────────────────┘
+
+
+
+
 ---> Output Format:
  - The generated CSV contains two columns:
      Column	    Description
@@ -151,3 +183,4 @@ python main.py
 - Language detection + multilingual sentiment models
 - GUI or web dashboard version
 - Database integration (MongoDB / SQLite)
+
